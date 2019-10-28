@@ -1,0 +1,349 @@
+Context:
+- browser receives HTML to render
+- gets script code (JS)
+- script changes what is seen on screen, plays videos, sends requests (AJAX)
+
+Everyone uses JS for frontend!
+
+HISTORY OF JS:
+- designed in 10 days in 1995
+- originally named Mocha
+- submitted in 1997 for consideration as industry standard
+- standardized version ECMAScript
+- called JS bc complimetns Java Applets, vaguely similar to Java, lightweight
+  and simple
+- rose to promenince when AJAX became popular in 2000s
+- node developed in 2011 for JS on backend, 2015 ECMAScript 6(ES6)
+
+ - MDN -> awesome documentation for JS
+ - If it's experimental technology, be hesitant! Might not be accessible in
+  all browsers, check w/ MDN
+ ---------------------------------------------------------------
+
+OOP in JS: Ruby is classes, Javascript is prototype-based!
+Ruby:
+class NBAPlayer
+	def initialize(...)
+		@name = name
+		@team = team
+		...
+	end
+
+	def dunk
+	end
+end
+curry = NBAPlayer.new(...)
+
+Javascript: -> use of constructor function, called using new keyword
+function NBAPlayer(name, team, pos) {
+	this.name = name,
+	this.team = team
+	this.pos = pos
+}
+const curry = new NBAPlayer(...)
+NBAPlayer.prototype.dunk = function() {}
+curry.dunk(); -> How does this have the dunk method? Think #prototype
+curry.__proto__== NBAPlayer.prototype -> Checks if there's a method on curry,
+if not, checks its prototype, if not, checks the prototype's prototype, and so on...
+Method style invocation -> calling on instance
+Define methods on the prototype not inside the constructor!
+function Capital means that it's a constructor function!
+
+node -> like pry in Ruby! Also call node to run js code
+let -> declare variables that are limited to a scope of a block statement or
+			 expression in which it is used
+
+String interpolation is ${} in Javascript, instead of #{} in Ruby
+console.log in javascript -> puts in Ruby
+Look at prototype to see functions defined!
+Seems like in JS, use mainly '' instead of ""
+
+Closures and Callbacks:
+In JS, for loops syntax is for(let i = 0; i < times; i++) {}... Back to C-style baby!
+
+Closure? -> Using a function not defined or passed into itself, not in its scope.
+						It captures a variable that was previously declared
+
+3 levels of scope in JS:
+- passed into function
+- defined inside function
+- has access to any variables that were already declared when function was defined
+	a. calls capturing variables, remember that you can change and it'll be MUTABLE
+	   and continue to persist
+
+Callback! -> function passed to another function as argument to be used at later time
+- most common use is when result will not be immediately available, e.g want to
+wait for information
+- commonly used with asynchronous functions-- doesn't wait, does other things
+	in background!
+- e.g setTimeout(callback, timeToWait)
+	a. defined in global scope, try typing in global and seeing what's available!
+
+	let callback = function() {}
+	let timeToWait = 5000 // ms
+
+	global.setTimeout(function() {}, 5000) // ES5 syntax
+	global.setTimeout((put arguments here) => {code}, 5000) // ES6 syntax
+
+REMEMBER, think of callback vs callback().
+One is passing in the function, the other is passing in the EVALUATED function (result of call)
+
+airbnb/javascript style guide! -> Good practice
+--------------------------------------------------------------------------
+
+Debugging JS w/ VS Code debugger:
+Debug raw JS files individually
+"Note that the "Launch index.html" configuration will only work for projects where the
+index.html file is in the root directory for the project. A local configuration will be
+needed when our index.html is nested in another directory."
+
+Use breakpoints! -> Can also insert conditional breakpoints -> right click on line
+
+"Note: When we begin using webpack to bundle our files together to run in the browser,
+we will need to use the word debugger so that the VS Code debugger will pause our code
+at our intended spots. "
+
+Use console logs! -> right click on line
+
+Click + in the watch section to watch a variable and see how it changes as you move thru code.
+(Similar to display in byebug)
+
+Starting Debugging:
+1. click debugging icon
+2. select debugging configuration from dropdown
+3. click green play button
+make sure you're invoking your function!
+
+---------------------------------------------------------------------
+Intro to JS:
+- runs in two main environments: browser and server-side
+- node -> server-side JS framework
+
+Server-side JS:
+- JS genesis from browser, traditionally run by browser not server
+- Node.js is a JS runtime built on Chrome's V8 javascript engine
+- JS file has .js extension
+
+http://kangax.github.io/compat-table/es6/
+
+ECMAScript: standardized specification that forms basis for JS.
+Blueprint from which various JS engines are built.
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference
+ES6!
+When maximum compatibility is needed, tools called transpiler will be used to
+translate ES6 back to more universal ES5. (Transpilers like Babel)
+
+Not all of ES6's features are compatible with latest version of Node.js!
+Node lets you used staged features using the --harmony flag, however!! ************
+
+https://nodejs.org/en/docs/es6/
+node --v8-options | grep "in progress" -> incomplete and possibly broken features
+
+----------------------------------------------------------------------
+JS Syntax and useful methods:
+- In JS-- an expression is line of code that returns a value, while a statement
+	is any line of code.
+- EVERY expression needs a semi-colon at the end
+- curly braces {} used to delineate code blocks such as function defs, loops,
+	if/else, define JS objects, etc
+- blocks to loop!
+	a. for (let i = 0; i< 10; i++) {}
+	b. while (condition) {}
+	c. looping keywords: continue (skips current iteration), break (exits loop)
+- switch statements
+	e.g
+	switch (expression) {
+		case x:
+			break;
+		case y:
+			break;
+		default:
+	}
+- console.log
+- // for singleline comments, /* */ for multiline
+- mathematical operators: +, -, *, /, %
+- comparison operators: >, <, >=, <=, ===, !==
+	a. Double equals(==) does type conversion and leads to confusing results, don't
+		use for now.
+- logical operators: &&, ||, !
+- string methods: String.prototype.toLowerCase, ...toUpperCase, ...indexOf, + (concatenation)
+- Array properties: Array.prototype.length
+- Array methods: Array.prototype.pop, ...push, ...unshift, ...shift,
+	...indexOf(similar to #index in Ruby, but returns -1 instead of nil when not found),
+	[], ...slice(start, end) -> start...end, Array.includes, Array.isArray
+
+Remember to always style, indent, and match brackets/curly braces.
+--------------------------------------------------------------------------
+Javascript Data Types:
+5 primitive types: numbers, string(text), boolean, undefined, null
+6th data type: objects
+
+NaN - stands for not-a-number, property of global object and not a JS data type.
+It's the result of any illegal numerical operation
+
+In Ruby: only nil/false are falsey
+In Javascript: zeros, empty strings, undefined, null, NaN, false are all falsey
+
+Primitives vs Objects:
+- primitive type is DATA and is not an object and cannot have methods
+- since primitives cannot have methods, must call functions on them e.g Math.abs(-5)
+
+In Ruby, everything is an object.
+In JS, there are primitive data types that are NOT objects.
+
+JS objects -> Similar to objects in Ruby, can store both state and behavior.
+
+var -> declares a variable. var declarations occur b4 any code is executed, this is
+called hoisting. Scope of var is in its current execution context. Undeclared
+variables are global! Always declare variables.
+
+JS -> Can access instance variables of object using bracket notation [] or dot notation
+
+In JS -> state and behavior of object are treated the same way, both are
+accessible as properties of the object.
+In Ruby -> state and behavior are separated into instance variables and methods
+which are accessed differently.
+--------------------------------------------------------------
+Declaring variables and constants in Javascript:
+1. var
+	a. functionally-scoped variable
+2. let (ES6+)
+	a. block-scoped variables
+3. const (ES6+)
+	a. constants, constructs that won't be re-declared or re-assigned
+	b. block-scoped
+	c. constants are not immutable, the BINDING is immutable. e.g the pointer can't
+		be changed
+4. window and global
+	a. if declaration is left off, it becomes global. Never do this
+	b. If you intentionally want global, explicitly add to environment's global
+		context.
+		- node: global.myGlobal = "etc
+		- browser: window.myGlobal = "etc"
+
+- Note that everything in JS has a return value, even variable declarations
+and initializations. undefined is the default return value
+- var is not the preferred means of declaring a variable in ES6. Use let or const
+-------------------------------------------------------------------------------
+Functions in JS are a special type of JS object. Can do anything to a function
+you can do to an object
+
+Declaring functions:
+- Function-style -> function functionName(...) {}
+- Expression-style -> const functionName = function(...) {}
+- Fat Arrow-style(ES6+) -> const functionName = (...) => {}
+Note: slight functional diff between functional style and expression style
+
+- In Ruby, a function is invoked by name after declared
+- In Javascript, referencing a function by name only returns pointer to function,
+	to execute, must invoke function w/ args, w/ no arguments use ()
+
+- Javascript: functions besides single-line fat-arrow functions do not have
+							implicit returns
+- Javascript: can give properties to a function!
+
+- JS: functions that are passed to another function as an argument are called callbacks
+- Very common to pass "anonymous functions" as arguments -> no name, function(...) {}
+- Key diff between objects and functions is that functions can be invoked with ()
+	while regular objects cannot.
+- Can accomplish similar to anonymous functions in Ruby using procs! But importance
+	of funcions as first class objs more important in JS
+-------------------------------------------------------------------------
+Closures and Scope:
+- scope of a method -> set of variables available for use within the method
+	a. includes function's arguments
+	b. local variables that were declared
+	c. any variables that were already declared when the function was defined
+" a nested function's scope includes variables declared in the scope where the
+function was nested."
+
+Closures -> functions that capture free variables are called closures
+	a. free variables can be modified by closures and have it persist
+	b. pass arguments to helper functions w/o explicitly listing them as arguments
+	c. can use to create private states -> by capturing a variable, each function
+		that is returned has private mutable state that cannot be accessed externally
+
+-JS has global scope, represented by the window object in browser and global object
+	in Node.js
+	a. adding attributes to these objects makes them available thruout a program
+
+***************Can add "use strict"; to top of .js file to enable strict mode!*********
+
+count++, ++count, same as C!
+Difference between C pointer to a function and Javascript reference to a function!
+- Javascript reference variable as having both a pointer to a function AND a hidden
+	pointer to a closure (so it has access to variables of outer scope, even after
+	said function has closed)
+- If you use function keyword inside another function, you create a closure
+- In JS, if function declared within another function, local variables of outer
+	function remain accessible after returning from it
+	"(In JavaScript, whenever you declare a function inside another function, the
+inside function(s) is/are recreated again each time the outside function is called.)"
+- defining function inside of a loop --> local variables from closure are...
+	a. did you use let or var (function vs block scope)
+	b. in the loop, if you used var, every iteration looks at the same closure
+	c. when let is used, each iteration has its own closure (block scope!)
+- call to main function creates separate new closure for all functions inside
+
+1. Whenever you use eval() inside a function, closure is used
+
+http://www.crockford.com/javascript/private.html -> private attributes and
+private methods for an object using closures
+
+https://www.codeproject.com/Articles/12231/Memory-Leakage-in-Internet-Explorer-revisited
+
+http://javascriptissexy.com/understand-javascript-closures-with-ease/
+- Another way to stop loop closure errors besides changing to using let, is to
+	invoke it immediately using () rather than passing it all in then invoking at the
+	end, after the loop has changed the closure variables
+-----------------------------------------------------------------
+- this in Javascript is a lot like self in Ruby
+- this is NOT optional if you want to access the attributes of the object
+- calling a function in functional style does not set "this" properly, e.g func(...)
+	instead of obj.func(...)
+
+-"this" when passing callbacks
+	a. recall that function-style method uses window or global as "this"
+	- Two ways around this problem!
+		a. introduce anonymous closure to capture cat (closure explicitly calls)
+		b. Function.prototype.bind
+			- bind is a method you call on JS functions
+			- works just like the closure
+			- can bind functions to any scope
+
+- Nested "this" problems
+	a. "this" doesn't get captured, it's reset everytime a function is called (think
+		looping thru an array of diff. functions, "this" changes with every call)
+	b. if you wish to close over "this", must store in a normal capturable variable
+	c. A lot of people name said variable "that" or "self"
+	d. ES6 provides an elegant solution to callback scoping issues thru arrow functions
+
+Think of "this" being set by method style calls, but NOT functional style and how
+scope works in Javascript
+--------------------------------------------------------------
+Fat Arrows aka arrow functions -> way of declaring functions, way to solve many
+of the inconveniences of normal callback function syntax
+
+e.g (parameters, ...) => {};
+"For single-expression blocks, { } and return are implied, and you may omit the ( )
+when there is a single argument."
+
+Arrow functions do NOT create a new scope. "this" means the same thing inside of
+an arrow function as it does outside of it.
+
+Potential issues:
+- Syntactic Ambiguity
+	a. () => ({}) to return an empty object
+	b. () => {} to return an empty block
+- No binding since they don't scope, so can't reassign "this"
+- No constructors, fat arrows can't be used as constructors
+- No arguments, b/c they don't change scope meaning no arguments object
+- No names, fat arrows are anonymous like their lambda counterparts in other languages
+	a. If you wish to name, assign to a variable
+
+-------------------------------------------------------------
+
+There are no blocks in JS.
+
+-------------------------------------------------------------
+
