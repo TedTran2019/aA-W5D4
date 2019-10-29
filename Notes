@@ -158,6 +158,7 @@ JS Syntax and useful methods:
 		case y:
 			break;
 		default:
+			break;
 	}
 - console.log
 - // for singleline comments, /* */ for multiline
@@ -347,3 +348,179 @@ There are no blocks in JS.
 
 -------------------------------------------------------------
 
+OOP JS: Continued
+- Declare constructor functions instead of classes
+- invoke constructor with new calls the function w/ this set to a new blank object
+- constructor functions don't return a value
+- named in CamelCase
+- set attributes using "this"
+
+- Utilize constructor's prototype to put things universal to all instances
+	e.g, instance methods
+- every instance has access to thingss in prototypte through #__proto__ property
+
+- Can mimic class methods and variables by defining attributes on the constructor
+	itself!
+	a. ConstructorName.attribute_name = etc
+
+What happens when you call new on a constructor function!
+1. JS creates a new blank object
+2. sets special __proto__ property to #prototype
+3. Runs code in the body, sets this to the blank object. constructor sets attributes
+4. ignores return value, returns new instance instead
+
+Method calling:
+1. looks in object for property
+2. if not found, access __proto__
+3. looks for property in prototype
+4. if found, calls
+5. if called method style, "this" is set to object
+----------------------------------------------------------
+Functions Invocation -> difference between getting the function and invoking the
+function to get the result. name vs name()
+
+------------------------------------------------------------
+CSS review:
+
+CSS positioning:
+- z-index
+	a. only applies to relative/absolute/fixed
+	b. nesting matters, parents z-index dictates children
+- positioning
+	- static
+		a. default, normal space, no nudging, no z-index
+	- relative
+		a. normal space, nudge, z-index
+		b. creates new coor system for absolute children
+		c. can't nudge conflicting properties
+		d. used to set z-index or contain absolute-positioned elements
+	- absolute
+		a. no space, z-index,
+		b. offset coors relative to nearest non-static ancestor
+		c. creates new coor system for absolute children
+		d. margins don't collapse
+		e. minimal horiz/vertical space unless overwritten
+		f. can set conflicting elements to stretch
+	- fixed
+		a. relative to window
+		b. fixed as document scrolls
+		c. otherwise, behaves same as absolute
+- overflow
+	a. by default, expands vertically to accommodate
+	b. if fixed height but need more space, flows out by default
+	c. overflow decides what happens when does not fit
+	d. if overflow:hidden is set to static, can only clip static children
+- calc()
+	a. can combine diff units
+	b. parentheses to denote order
+
+Pseudo-Content:
+- use attr to grab attribute, so can put attr(href)
+- used to inject content inside of element
+- can do before or after
+- acts as inline by default
+- can take ay styling
+- needs a declared content property
+- content property can be a string or select an element's attribute
+	a. "hello"
+	b. attr(href)
+------------------------------------------------------------------------
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
+https://www.codecademy.com/learn/introduction-to-javascript
+http://jqfundamentals.com/chapter/javascript-basics
+
+So far in codecademy:
+----------------------
+"." is the dot operator
+Strings:
+-toUpperCase
+-trim
+-startsWith
+Math:
+-random
+-floor
+-ceil
+Number:
+-isInteger
+
+variables w/o values start off as undefined
+Syntactic sugar: +=, *=, ++, --, etc
+template literal wrapped by backticks ` (left of 1)
+typeof operator to check type
+String interpolation -> using template literals to embed variables into strings
+if statements, it has to be like -> if (var) {}
+Remember the semicolons!
+For if/else, both parts need their own set of curly braces
+Yay, same ternary operator
+Back to regular else if
+Math.floor(Math.random() * 8) -> random number between 0 and 7
+Math.random returns a number between 0...1
+hoisting => allows access to functions b4 they're defined
+const keyword to hold anonymous functions, function expressions are NOT hoisted
+"global" scope? => outside of any block, available to all in file
+globally scoped variables can collide with locally scoped, causing errors
+array literal -> creates array by wrapping items in square brackets
+#join, #slice, #splice, #shift, #unshift, #concat, etc
+Pass by reference, so it will mutate if passed into other functions...
+for loops -> don't forget the LET i, don't forget the initializer
+do while -> run at least once
+Don't put a semicolon after closing curly braces, unless it's assignment or do/while
+https://news.codecademy.com/your-guide-to-semicolons-in-javascript/
+Inside of for loop, semicolon after first 2 but not the third
+Functions in JS are first class objects -> can have properties and methods
+#name property on function
+higher-order function -> can accept functions as arguments or return them
+#forEach, #map, #select -> each, map, in Ruby
+return value forEach is undefined, takes callback as arg to call on every element
+#findIndex returns -1 when not found, is like an enumerable
+#reduce => same as inject in Ruby, first arg is callback second is optional accu
+#some is the same as any? in Ruby, except u gotta return to get the true/false
+#every is like Ruby's all? Same return rule as #some
+-What the fuck. A plain object in JS is like a hash, {} for object literal... which
+ consists of key-value pairs. If special characters, use quotation marks else don't.
+Just regular : for object literals
+Must use bracket notation when accessing keys w/ special characters in them!
+Can add new properties or update using same []= notation, or just the #etc = notation
+Can use the delete keyword to remove properties or methods from an object
+method_name () {} --> that's it for ES6
+You need commas inbetween method definitions, just like attributes...
+Think passing by REFERENCE. Passing a pointer to space in memory of the passing obj
+JS for/in to loop thru objects -> this loop is terrible, it doesn't access the
+object itself, just creates a string of it
+-Reasoning for using "this", gives obj's methods access to obj's variables...
+- this references the calling obj
+- If you use arrow function for methods, don't need to use "this" as arrow
+	functions don't create their own scope
+Things that should not be changed/should be private are prefixed with _ underscore
+- getter method -> get functionName () {}
+	a. do not need () to use this method, looks like accessing property
+	b. properties cannot share same name as getter/setter functions, prefix with _
+- setter method -> set functionName () {}
+	a. same as getter stuff
+typeof returns a string???
+Object.values(obj) -> see all attributes and methods
+- ES6 -> shorthand for assigning properties to variables known as destructuring
+	a. don't need to include the key, it's automatically set.
+	b. e.g model: model, it's just model
+- ES6 -> destructured assignment -> aka fucking STUPID
+	a. instead of "let residence = vampire.residence",
+		 it'll be let { residence } = vampire
+built in properties of objs: #hasOwnProperty, #valueOf
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#Methods
+Or Object::assign, Object::entries, Object::keys
+
+Classes in Javascript!
+- keywords: class, constructor(args), this, get/set
+- diff between class and object syntax: class calls constructor() every time
+	it creates a new instance of the class
+- new keyword used on class name to create instance
+- Syntax is same for objects, except that you can not bother with the commas
+- Think objs more as special hashes!
+- Inheritance; attributes and methods
+- instead of <, it's the keyword "extends"
+- same as Ruby, use super in constructor!
+- always call super before using this!!!
+- class methods aka static methods in JS -> use static keyword
+
+remember, no implicit returns in JS besides single line fat arrows!
