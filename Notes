@@ -524,3 +524,56 @@ Classes in Javascript!
 - class methods aka static methods in JS -> use static keyword
 
 remember, no implicit returns in JS besides single line fat arrows!
+---------------------------------------------------------------------------------
+JS: browser compatibility and transpilation
+- caniuse.com => provides data on web browser compatibility for html/css/js
+- babel => javascript library to convert new unsupported JS(ES6) into older JS(ES5)
+	a. babel-cli, babel-preset-env
+	b. npm init -> creates a package.json file
+	c. -D flag for npm install instructs npm to add each package to devDependencies
+	d. edit .babelrc for JS settings, "presets": ["env"]
+	e ... below
+	"scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "build": "babel src -d lib"
+}
+babel transpiles code, src directory, -d write to a directory, lib to a directory
+called lib
+	f. npm run build -> to run the build script! (determined in package.json)
+----------------------------------------------------------------------------------
+
+JS modules -> reusable pieces of code that can be exported from one program to another
+- Node.js's module.exports, require(), ES6's import/export
+	a. export default ObjName (not supported by node, use in browser)
+	b. import VarName from 'path'
+	c. named exports!! => just do export { var_name, method_name, etc };
+	d. named imports => import { etc_name } from 'path'
+	e. named exports can be exported as soon as they're declared by using export keyword
+		e.g export let var = ''
+	f. for named exports, can use as keyword to alias to other things! {var_name as other_name}
+	g. a trick is to import * as Etc from 'path -> import an entire module as just one alias
+Named takes from variables, default takes obj/functions/primitives
+-------------------------------------------------------------------------------------
+
+Javascript Promises: how modern JS handles asynchronicity
+asynchronous programming -> allows computer to move on while waiting for the async
+task to complete
+
+Promise - object that represents eventual outcome of an async operation! 3 states
+1. pending -- not completed
+2. fulfilled - completely successfuly and has a resolved value
+3. rejected - operation failed and promise has reason for failure
+A promise is SETTLED if it's fulfilled or rejected
+
+To create a promise: use new on the Promise constructor...
+e.g new Promise(executorFunc)
+e.g executorFunc(resolve, reject) -> #resolve and  #reject are built-in methods
+
+setTimeout(callback_func, time_in_ms) -> node API provided by web browsers that
+uses callback functions to schedule tasks to be performed after a delay.
+
+What is the event-loop? -> async JS uses this
+
+Promise objects come with a #then method, takes 2 callback functions as args
+These callbacks are handlers, usually called onFulfilled and onRejected
+-#then ALWAYS returns a promise! ****************
