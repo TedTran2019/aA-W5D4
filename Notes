@@ -577,3 +577,68 @@ What is the event-loop? -> async JS uses this
 Promise objects come with a #then method, takes 2 callback functions as args
 These callbacks are handlers, usually called onFulfilled and onRejected
 -#then ALWAYS returns a promise! ****************
+-#catch takes one argument, onRejected
+JS doesn't care about whitespace!
+
+-Chaining promises together is called composition
+	a. common mistakes
+		- nesting promises instead of chaining them
+		- forgetting to return a promise
+	b. multiple promises but don't care about order ==> use Promise.all()
+		- accepts array of promises as param and returns a promise
+---------------------------------------------------------------------------
+Async await:
+- ES8 provides new syntax -> async...await
+- Syntax is:
+	a. async function funcName()
+	b. let varName = await promiseFunc()
+	That's it!
+Can also use async to create function expressions... async () => {}
+Different syntax for accomplishing async task:
+1. callback functions
+2. promises
+3. async...await
+-try...catch for catching errors! (It's the same for sync and async)
+- Could also just use #catch since it's a promise!
+-Remember with async functions, always returns a promise. If a promise is returned,
+	it's a promise, if it's a value, a promise resolved to said value, if nothing,
+	a promise with value undefined.
+- Eeh, independent promise "trick".
+	a. no await when setting var to the function, but use "await" when accessing results
+	b. "if we have multiple truly independent promises that we would like to execute
+	fully in parallel, we must use individual .then() functions and avoid halting our
+	 execution with await"
+- can also await a Promise.all(), if all required but none must wait for any other
+-------------------------------------------------------------------------------
+HTTPS -> HTTP SECURE -> encrypt data sent and received
+Datamuse, Rebrandly URL shortener -> codecademy way
+
+https://learnxinyminutes.com/docs/javascript/ -> You only needed to learn the
+syntax, going thru Code Academy was a huge waste of time.
+--------------------------------------------------------------------------
+http://jqfundamentals.com/chapter/javascript-basics
+https://javascriptweblog.wordpress.com/2010/07/06/function-declarations-vs-function-expressions/
+
+-Basically, use function expressions instead of declarations
+	a. function expressions get hoisted to top of JS scope and can cause many errors
+	b. if you wish to use javascript declarations, place them on top of the file
+- Can force meaning of #this by using #call or #apply on the function itself
+
+JQUERY:
+- objects mainly to provide configuration options
+$('#main').css({
+  color: 'red',
+  border: '1px solid blue'
+});
+- #this -> Jquery controls.
+	a. in case of event handlers, this will refer to element you bound to handler
+	b. when iterating over set of elements in selection, this refers to current ele in
+		the iteration
+
+In Javascript, names can have no hyphens or begin with a number
+basically tl;dr don't work with numbers in JS if possible.
+Can access arguments array in any function w/ arguments[i]
+... is equivalent to splat operator in Ruby for parameters
+
+http://benalman.com/news/2010/11/immediately-invoked-function-expression/
+---------------------------------------------------------------------------------
