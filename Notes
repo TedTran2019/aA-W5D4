@@ -681,3 +681,5 @@ Can include index and array in Javascript enumerables if they are wanted...
 
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
 For easy swaps?
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof
