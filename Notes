@@ -683,3 +683,28 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Dest
 For easy swaps?
 
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof
+
+Instructor solution for #subsets was beautiful
+- Usage of map and concat to avoid a deep_dup or any kind of dup
+- Clear variable names, withoutFirst and withFirst
+
+Clean usage of conditional assignment, etc || etc is smart if you don't have
+||= syntactic sugar.
+
+Be able to reason about object-oriented Javascript
+Know the different ways that objects can interact with each other in JavaScript
+Be able to write modular code
+Know how to manually test your code as you write it
+Be able to write a run-loop in JavaScript
+Know how to use duck typing to allow for both a HumanPlayer and a ComputerPlayer
+
+- Setting up Mocha tests within vscode
+- launch.json -> add configuration -> node.js -> Mocha environment ->
+	put into settings.json (under configurations) to use in all projects
+- Make sure you actually have Mocha installed, either global or dev dependency
+	a. npm install --global mocha
+	b. npm install --save-dev mocha
+	c. Or just npm install if it's included in the package.json file
+- Use 'mocha' command to run tests
+- Change 'tdd' to 'bdd' to make the debugger work, apparently.
+- Use 'debugger;' to set breakpoints in test code
