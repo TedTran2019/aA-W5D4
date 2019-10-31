@@ -37,7 +37,7 @@ curry = NBAPlayer.new(...)
 Javascript: -> use of constructor function, called using new keyword
 function NBAPlayer(name, team, pos) {
 	this.name = name,
-	this.team = team
+	this.team = team,
 	this.pos = pos
 }
 const curry = new NBAPlayer(...)
@@ -642,3 +642,42 @@ Can access arguments array in any function w/ arguments[i]
 
 http://benalman.com/news/2010/11/immediately-invoked-function-expression/
 ---------------------------------------------------------------------------------
+
+https://www.freecodecamp.org/news/when-to-use-a-function-declarations-vs-a-function-expression-70f15152a0a0/
+
+Use function declarations for functions that you want w/ global scope
+Use function expressions to limit where the function is available!
+
+Can use IIFEs to provide a wrapping scope around a local variable, aka create
+a closure so it's available even after function has closed. IIFE are just
+immediately invoked function expressions!
+-----------------------------------------------------------------------------------
+
+Closures are cool, I guess. Also, class methods by just defining an attribute
+on the constructor is pretty rad too...
+
+-------------------------------------------------------------------------------
+
+Notice the mistake you made on CSS friends 03. You did border-right 1px, then forgot
+to change the padding, resulting in the sizes of the two containers getting slightly
+messed up. Remember that padding/border is added to the size of the containers
+w/ default box-sizing property, so padding-right had to be changed to 19px.
+
+Seems like in HTML, you should make classes even if it seems obvious.
+
+Didn't notice that the bottom-border left/right were slightly curved at all...
+needed to utilize border-radius there.
+
+Also, it seems like where the instructor uses padding, you tend to use margin.
+-------------------------------------------------------------------------------
+
+Be able to write the same types of functions you were able to write in Ruby
+Know how to pass functions as arguments to other functions and call them as callbacks
+Know how closures work
+Know how JavaScript's prototypical inheritance works
+Know how to monkey-patch new methods onto a class in JavaScript
+
+Can include index and array in Javascript enumerables if they are wanted...
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
+For easy swaps?
