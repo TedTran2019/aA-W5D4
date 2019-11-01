@@ -731,3 +731,13 @@ However, can learn a lot from the game.js file and implementation
 - Look at how rlInterface is implemented
 	a. terminal: false, input: process.stdin, output: process.stdout, #close,
 		#bind, JSON::parse
+
+Instructor solution notables
+- Usage of 'new Array(8)'
+- Better and cleaner one liners rather than if/else
+- More usage of created functionality for better abstraction and more DRY
+- Why didn't you want to use getPiece LMAO
+- I guess Ill use the excuse that it was Halloween and my cat was inside all day,
+so I was highly distracted and playin with him nonstop...
+- Why did you do the includes validMoves instead of just calling validMove???
+- Hmm, a lot of small mistakes but nothing too bad. Gettin' the hang of Javascript!
