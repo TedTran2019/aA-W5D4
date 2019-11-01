@@ -708,3 +708,26 @@ Know how to use duck typing to allow for both a HumanPlayer and a ComputerPlayer
 - Use 'mocha' command to run tests
 - Change 'tdd' to 'bdd' to make the debugger work, apparently.
 - Use 'debugger;' to set breakpoints in test code
+
+Damn, death by a thousand small mistakes.
+- concat returns a NEW array...
+- having array in wrong order for validMoves.. that's pretty silly.
+- Huh, look at how === works for Arrays. That's interesting-- you've never really
+	thought about it. For now, just convert to string then do equality check.
+- My mistake was that my grid was setup differently than how the instructor wanted
+	it... They wanted the grid to also be [x][y] to access for some reason.
+- Play the game by npm start -> [y, x]...
+
+Usage of module.exports and require
+npm start / npm test
+
+Also, I guess there's kind of nothing to do for phase 2 of Reversi as the
+run loop is already written, and adding in Human/AI player functionality is just
+putting in colors. Going to move on!
+
+However, can learn a lot from the game.js file and implementation
+- First of all-- duck typing in Ruby and JS are the same, it seems.
+- underscore for private attribute and methods
+- Look at how rlInterface is implemented
+	a. terminal: false, input: process.stdin, output: process.stdout, #close,
+		#bind, JSON::parse
